@@ -3,7 +3,7 @@
 DIR="$(cd ""$(dirname ""${BASH_SOURCE[0]}"")"" && pwd)"
 OUTPUT_FILE="$(mktemp)"
 
-if [[ "$1" == "help" ]] || [[ "$1" == "" ]]; then
+if [[ "$1" == "help" ]] || [[ "$1" == "" ]] || [[ "$2" == "" ]]; then
 	echo "Usage: $0 port filename"
 	exit 0
 fi
