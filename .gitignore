@@ -15,3 +15,6 @@
 
 # Make sure we do not upload any output
 output/
+
+# Make sure compiled versions of hex2hex are not uploaded.
+hex2hex/hex2hex
