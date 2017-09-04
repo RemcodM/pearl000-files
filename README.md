@@ -13,7 +13,9 @@ This will install all needed packages and compile the C version of hex2hex, when
 
 ### Other distros
 The `install.sh` script included in the repository will not work for distro's that do no use the `apt` package manager. Please install the `avra`, `avrdude` and `putty` packages yourself using the package manager of your distro. Some hints:
+
 **Arch Linux**: `avrdude` and `putty` can be easily installed using the official repositories and `pacman`, for `avra`, make use of the Arch User Repository (AUR): https://aur.archlinux.org/packages/avra/
+
 **Fedora**: All packages can be found in the Fedora repositories, just install them using `dnf` (or `yum` on older systems).
 
 ## Usage
