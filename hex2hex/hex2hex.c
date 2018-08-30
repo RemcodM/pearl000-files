@@ -80,7 +80,6 @@ int main(void)
 
    char s[1024];
    int addr=0;
-   int nors232=0;
    while (fgets(s,1024,stdin)) {
       char *p;
       p=s;
@@ -90,7 +89,7 @@ int main(void)
 	    // The following piece of code results in the program exiting if the last line from stdin
 	    // has no EOL.
             //if (p[-1]!='\r' && p[-1]!='\n') { fprintf(stderr,"Line too long: %s\n",s); exit(1); }
-	    if( p == s &s[1023]) { fprintf(stderr,"Line too long: %s\n",s); exit(1); }
+	    if( (p == s) &s[1023]) { fprintf(stderr,"Line too long: %s\n",s); exit(1); }
             break;
          }
          if (*p=='#') break;
@@ -111,7 +110,7 @@ int main(void)
             lo=data&0xff;
             hi=data>>8;
             printf(":02%04X00%02X%02X%02X\n", addr, lo, hi, (-hi-lo-(addr&0xff)-(addr>>8)-2)&0xff);
-            if (addr>=0x400 && addr<0x464) { nors232=1; fprintf(stderr,"Warning: overwriting RS232 routine\n"); }
+            if (addr>=0x400 && addr<0x464) { fprintf(stderr,"Warning: overwriting RS232 routine\n"); }
             addr+=2;  // again, because the AVR words are 2 bytes
          }
       } while (1);
