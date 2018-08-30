@@ -125,7 +125,8 @@ pushd "$DIR" > /dev/null
 if [[ $OSTYPE == darwin* ]]; then
 	echo -e "Detected ${TEXT_BLUE}macOS${TEXT_NORMAL}\n"
 	detect_xcode_tools
-	detect_hex2hex || echo -e "${TEXT_BLUE}${TEXT_BOLD}Hint:${TEXT_NORMAL} Please install a C compiler or the Python runtime first." && exit 1
+	detect_hex2hex || (echo -e "${TEXT_BLUE}${TEXT_BOLD}Hint:${TEXT_NORMAL} Please install a C compiler or the Python runtime first." && exit 1)
+	detect_brew
 	detect_or_install_brew "avrdude uploader" "avrdude" || exit 1
 	detect_or_install_brew "avra assembler" "avra" || exit 1
 	detect_or_install_brew "putty" "putty" || exit 1
