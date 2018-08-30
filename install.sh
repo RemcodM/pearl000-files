@@ -76,7 +76,7 @@ function detect_brew {
 		return 0
 	fi
 
-	echo -e -n "${TEXT_YELLOW}launching installation...${TEXT_NORMAL}"
+	echo -e "${TEXT_YELLOW}launching installation...${TEXT_NORMAL}"
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	echo -e -n "\n> Homebrew: "
 	check_error "$?" || exit 1
@@ -129,7 +129,7 @@ if [[ $OSTYPE == darwin* ]]; then
 	detect_brew
 	detect_or_install_brew "avrdude uploader" "avrdude" || exit 1
 	detect_or_install_brew "avra assembler" "avra" || exit 1
-	detect_or_install_brew "putty" "putty" || exit 1
+	detect_or_install_brew "screen" "screen" || exit 1
 elif [[ $OSTYPE == linux* ]]; then
 	if [[ -n "$(which apt-get)" ]]; then
 		echo -e "Detected ${TEXT_BLUE}Debian-based Linux${TEXT_NORMAL}\n"
