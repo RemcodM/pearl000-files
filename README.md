@@ -86,7 +86,7 @@ Possible devices for the Arduino are:
 Look for the `Possible devices for the Arduino are:` line. All lines following this lines list the devices added to your computer during the execution of the script. In this case, only the Arduino was connected and detected as `/dev/ttyACM0`.
 
 ## Reading the serial connection using `putty`.
-To read out the data written to the serial connection by your Arduino, you can use the `putty` tool. To open the serial console using putty, execute the following command in a terminal
+To read out the data written to the serial connection by your Arduino, you can use the `putty` tool. To open the serial console using `putty`, execute the following command in a terminal
 ```
 # putty -serial PORT -sercfg 115200
 ```

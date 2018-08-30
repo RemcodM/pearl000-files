@@ -30,10 +30,10 @@ fi
 echo "- Detecting hex2hex..."
 if [[ -x "hex2hex/hex2hex" ]]; then
 	echo "-> Detected native hex2hex in hex2hex/hex2hex."
-elif [[ -f "hex2hex/hex2hex.c" ]] && [[ -n $(which gcc) ]]; then
+elif [[ -f "hex2hex/hex2hex.c" ]] && [[ -n $(which cc) ]]; then
 	echo "-> Detected hex2hex source code and working C compiler."
 	echo "->> Compiling hex2hex.c..."
-	gcc hex2hex/hex2hex.c -o hex2hex/hex2hex
+	cc hex2hex/hex2hex.c -o hex2hex/hex2hex
 	check_error $?
 elif [[ -f "hex2hex/hex2hex.py" ]] && [[ -n $(which python) ]]; then
 	echo "-> Detected python hex2hex in hex2hex/hex2hex.py."
