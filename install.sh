@@ -65,7 +65,7 @@ function detect_xcode_tools {
 	echo -e "${TEXT_BLUE}${TEXT_BOLD}Hint:${TEXT_NORMAL} The script will now try to install the XCode Developer Command Line tools."
 	echo -e "${TEXT_BLUE}${TEXT_BOLD}Hint:${TEXT_NORMAL} This might show an confirmation dialog. Please press install when asked."
 	xcode-select --install
-	echo -e "\n"
+	echo -e -n "\n"
 }
 
 function detect_brew {
