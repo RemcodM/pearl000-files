@@ -1,18 +1,38 @@
-# Pearl 000 Arduino toolset for Linux based operating systems
-This repository contains the supporting tools for fulfilling the Arduino assignments of the first pearl under Linux. It is based on the Windows version of the toolset with little modifications.
+# Pearl 000 Arduino Toolset for macOS and Linux based operating systems
+This repository contains the supporting tools for fulfilling the Arduino assignments of the first pearl under Linux and macOS. It is based on the Windows version of the toolset with little modifications.
 
 ## Installation
-Clone the git repository into any folder on your filesystem, or download a ZIP file of the repository and unpack this somewhere on your filesystem. Then, proceed based on your Linux distribution.
+Clone the git repository into any folder on your filesystem, or download a ZIP file of the repository and unpack this somewhere on your filesystem. Then, proceed based on your operating system.
 
-### Debian based (Debian, Ubuntu, Mint, etc.)
+### macOS
+The included `install.sh` script will install all needed tools on your computer. First, launch the terminal from the Launchpad or by searching for 'Terminal' in Spotlight. In the terminal, navigate to the directory in which you have unpacked the files. The easiest way to do this is by typing `cd ` and then dragging the folder with the downloaded files to the terminal. This will result in (for example):
+```
+# cd /Users/remco/Downloads/pearl000-files
+```
+Press enter to navigate to this directory. Once here, run the `install.sh` script, by typing:
+```
+# ./install.sh
+```
+Follow the instructions on the screen. If everything went well, you should see `Successful: All tools are installed and successfully configured.` at the end of the terminal screen.
+
+### Debian based Linux installation (Debian, Ubuntu, Mint, etc.)
 The included `install.sh` script will install all needed tools on your computer. Open a terminal and navigate to the directory in which you placed the repository files. From there, run:
 ```
 # ./install.sh
 ```
-This will install all needed packages and, when possible, compile the C version of hex2hex. Otherwise, it will try to use the included Python version.
+This will install and configure all needed packages and tools. If everything went well, you should see `Successful: All tools are installed and successfully configured.` at the end of the terminal screen.
 
-### Other distros (Fedora, Arch Linux, Gentoo, others...)
-The `install.sh` script included in the repository will not work for distro's that do no use the `apt` package manager. Please install the `avra`, `avrdude` and `putty` packages yourself using the package manager of your distro. Some hints:
+### Other Linux based installations (Fedora, Arch Linux, Gentoo, others)
+The included `install.sh` script will compile the needed hex2hex tool and gives instructions about installing missing packages. Because the script only supports automated installation of the missing tools on Debian based Linux installations, it cannot automatically install all packages. It will only give hints about how to proceed.
+
+Open a terminal and navigate to the directory in which you placed the repository files. From there, run:
+```
+# ./install.sh
+```
+
+Follow the instructions on the screen. You might have to install multiple packages. After multiple runs of the `install.sh` script, you should see `Successful: All tools are installed and successfully configured.` at the end of the terminal screen.
+
+#### Some useful hints for installing packages on different installations
 
 **Arch Linux**: `avrdude` and `putty` can be easily installed using the official repositories and `pacman`, for `avra`, make use of the Arch User Repository (AUR): https://aur.archlinux.org/packages/avra/
 
@@ -27,7 +47,7 @@ When the `upload.sh` script is invoked without arguments, the usage is printed:
 # ./upload.sh
 Usage: ./upload.sh port filename
 ```
-Replace `port` with the device entry of your Arduino, for example, `/dev/ttyACM0` will most likely be the device entry on most Debian based systems. If you are unsure about how to find the correct device entry, please read the next section. Replace `filename` with the hex file you wrote, for example `exercise.txt`. This will write:
+Replace `port` with the device entry of your Arduino. `/dev/ttyACM0` or `/dev/tty.usbmodem1111` are examples of device entries on respectively Debian based systems and macOS. If you are unsure about how to find the correct device entry, please read the next section. Replace `filename` with the hex file you wrote, for example, `exercise.txt`. This will write:
 ```
 # ./upload.sh /dev/ttyACM0 exercise.txt 
 -- Converting to hex...
@@ -42,7 +62,7 @@ When the `asmupload.sh` script is invoked without arguments, the usage is printe
 # ./asmupload.sh
 Usage: ./asmupload.sh port filename
 ```
-Replace `port` with the device entry of your Arduino, for example, `/dev/ttyACM0` will most likely be the device entry on most Debian based systems. If you are unsure about how to find the correct device entry, please read the next section. Replace `filename` with the assembly file you wrote, for example, `exercise.txt`. This will write:
+Replace `port` with the device entry of your Arduino. `/dev/ttyACM0` or `/dev/tty.usbmodem1111` are examples of device entries on respectively Debian based systems and macOS. If you are unsure about how to find the correct device entry, please read the next section. Replace `filename` with the assembly file you wrote, for example, `exercise.txt`. This will write:
 ```
 # ./asmupload.sh /dev/ttyACM0 exercise.txt 
 -- Converting to hex...
@@ -72,10 +92,10 @@ Segment usage:
    EEPROM    :         0 bytes
 -- Uploading...
 ```
-When you see the `-- Uploading...` line, without any errors, the program has succesfully been uploaded to the Arduino.
+When you see the `-- Uploading...` line, without any errors, the program has successfully been uploaded to the Arduino.
 
 ## Finding the Arduino device entry
-When the Arduino is connected to a Linux based operating system using the USB connection, Linux will automatically detect the Arduino as a USB serial device and place a device entry in `/dev/`. However, the device entry may be called different across distros and Linux kernel versions. To make finding the Arduino device entry easier, use the included `detect.sh` script. When you call it, follow the instructions on the screen:
+When the Arduino is connected to a Linux or macOS based system using the USB connection, the kernel will automatically detect the Arduino as a USB serial device and place a device entry in `/dev/`. However, the device entry may be called different across different systems. To make finding the Arduino device entry easier, use the included `detect.sh` script. When you call it, follow the instructions on the screen:
 ```
 # ./detect.sh
 Unplug the Arduino when plugged in. Then press enter.
@@ -85,8 +105,22 @@ Possible devices for the Arduino are:
 ```
 Look for the `Possible devices for the Arduino are:` line. All lines following this lines list the devices added to your computer during the execution of the script. In this case, only the Arduino was connected and detected as `/dev/ttyACM0`.
 
-## Reading the serial connection using `putty`.
-To read out the data written to the serial connection by your Arduino, you can use the `putty` tool. To open the serial console using `putty`, execute the following command in a terminal
+## Reading the serial connection 
+To read out the data written to the serial connection by your Arduino, we need a tool to read out the serial connection.
+
+### Reading the serial connection on macOS using `screen`.
+On macOS, the serial connection can be most easily read out using the `screen` command. Run the following command in a terminal.
+```
+# screen PORT 115200
+```
+Replace `PORT` with your device entry, for example:
+```
+# screen /dev/tty.usbmodem1111 115200
+```
+This will show the output in your terminal. Make sure to close `screen` when uploading a new program, or else you will get error messages from `avrdude`, which won't be able to upload the newer program to your Arduino while `screen` is using it.
+
+### Reading the serial connection on Linux using `putty`.
+On Linux, you can use the `putty` tool to read out the serial connection, just as on Windows. To open the serial console using `putty`, execute the following command in a terminal
 ```
 # putty -serial PORT -sercfg 115200
 ```
