@@ -1,6 +1,6 @@
 #!/bin/bash
 
-read -p "Unplug the Arduino when plugged in. Then press enter."
+read -p "Unplug the Arduino if already plugged in. Then press enter."
 
 OUTPUT_FILE="$(mktemp)"
 find /dev -maxdepth 1 -not -type d | sort > "$OUTPUT_FILE"

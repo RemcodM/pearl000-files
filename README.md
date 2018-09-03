@@ -98,7 +98,7 @@ When you see the `-- Uploading...` line, without any errors, the program has suc
 When the Arduino is connected to a Linux or macOS based system using the USB connection, the kernel will automatically detect the Arduino as a USB serial device and place a device entry in `/dev/`. However, the device entry may be called different across different systems. To make finding the Arduino device entry easier, use the included `detect.sh` script. When you call it, follow the instructions on the screen:
 ```
 # ./detect.sh
-Unplug the Arduino when plugged in. Then press enter.
+Unplug the Arduino if already plugged in. Then press enter.
 Plug in the Arduino now. Then press enter to continue.
 Possible devices for the Arduino are:
 /dev/ttyACM0
