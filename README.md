@@ -111,21 +111,21 @@ To read out the data written to the serial connection by your Arduino, we need a
 ### Reading the serial connection on macOS using `screen`.
 On macOS, the serial connection can be most easily read out using the `screen` command. Run the following command in a terminal.
 ```
-# screen PORT 115200
+# screen PORT 9600
 ```
 Replace `PORT` with your device entry, for example:
 ```
-# screen /dev/tty.usbmodem1111 115200
+# screen /dev/tty.usbmodem1111 9600
 ```
 This will show the output in your terminal. Make sure to close `screen` when uploading a new program, or else you will get error messages from `avrdude`, which won't be able to upload the newer program to your Arduino while `screen` is using it.
 
 ### Reading the serial connection on Linux using `putty`.
 On Linux, you can use the `putty` tool to read out the serial connection, just as on Windows. To open the serial console using `putty`, execute the following command in a terminal
 ```
-# putty -serial PORT -sercfg 115200
+# putty -serial PORT -sercfg 9600
 ```
 Replace `PORT` with your device entry, for example:
 ```
-# putty -serial /dev/ttyACM0 -sercfg 115200
+# putty -serial /dev/ttyACM0 -sercfg 9600
 ```
 This will open a new window with the serial output. Make sure to close `putty` when uploading a new program, or else you will get error messages from `avrdude`, which won't be able to upload the newer program to your Arduino while `putty` is using it.
