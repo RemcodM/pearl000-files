@@ -26,11 +26,15 @@
 ##     work quite well under macOS. Putty may be installed using APT
 ##     on Debian based systems. GNU screen may be installed using
 ##     Homebrew on macOS based systems.
-## If any of the above `requirements` is cannot resolved, the script will
+## If any of the above `requirements` cannot be resolved, the script will
 ## stop and inform the user.
 ## This script does itself not install any files outside of the directory
 ## the script lives in, however:
-## (-) On macOS, it does install XCode command line tools and Homebrew.
+## (-) On macOS, it does install XCode command line tools and Homebrew,
+##     furthermore, it installs the following Homebrew packages:
+##     (1) avra
+##     (2) avrdude
+##     (3) screen
 ## (-) On Debian based systems, it might install the following APT packages
 ##     (1) avra
 ##     (2) avrdude
