@@ -30,16 +30,23 @@ if [[ $ERROR_CODE -ne 0 ]]; then
 	exit $ERROR_CODE
 fi
 
+# If .asm is used, strip file extension
+if [[ "${2: -4}" == ".asm" ]]; then
+	STRIPPED_FN="${2%.*}"
+else
+	STRIPPED_FN="${2}"
+fi
+
 # All this cleaning up is needed because avra never implemented all their
 # fileout parameters...
 # Basically it deletes all the extra files avra creates in the process. We
 # cannot control how avra writes these from the command line because the
 # avra source code reveals they are never implemented, although they are
 # mentioned within the documentation.
-rm "$2.eep.hex"
-rm "$2.obj"
-rm "$2.cof"
-mv "$2.hex" "$OUTPUT_FILE"
+rm "$STRIPPED_FN.eep.hex"
+rm "$STRIPPED_FN.obj"
+rm "$STRIPPED_FN.cof"
+mv "$STRIPPED_FN.hex" "$OUTPUT_FILE"
 
 # Upload our machine code to the Arduino using avrdude
 echo "-- Uploading..."
