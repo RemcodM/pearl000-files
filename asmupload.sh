@@ -31,7 +31,7 @@ if [[ $ERROR_CODE -ne 0 ]]; then
 fi
 
 # If .asm is used, strip file extension
-if [ ${2: -4} == ".asm" ]; then
+if [[ "${2: -4}" == ".asm" ]]; then
 	STRIPPED_FN="${2%.*}"
 else
 	STRIPPED_FN="${2}"
