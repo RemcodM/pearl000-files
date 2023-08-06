@@ -119,6 +119,8 @@ Replace `PORT` with your device entry, for example:
 ```
 This will show the output in your terminal. Make sure to close `screen` when uploading a new program, or else you will get error messages from `avrdude`, which won't be able to upload the newer program to your Arduino while `screen` is using it.
 
+To quit `screen` press `Control-A` and then press `\`
+
 ### Reading the serial connection on Linux using `putty`.
 On Linux, you can use the `putty` tool to read out the serial connection, just as on Windows. To open the serial console using `putty`, execute the following command in a terminal
 ```
